@@ -150,7 +150,7 @@ const Form = () => {
             <h3 className="mx-6">Column3</h3>
           </div>
           <div className="flex items-center justify-between mr-6 bg-gray-50 px-2 py-1 rounded-sm">
-            <h4 className="">Row</h4>
+            <h4 className="">Row 1</h4>
             <RadioGroup
               row
             >
@@ -195,31 +195,40 @@ const Form = () => {
             Tick box Grid
             <PiAsteriskSimpleBold className="text-xs text-red-600" />
           </FormLabel>
-
-          <div className="flex">
+          <div className="flex items-center justify-end mr-10 mb-4">
+            <h3 className="mx-6">Column1</h3>
+            <h3 className="mx-6">Column2</h3>
+            <h3 className="mx-6">Column3</h3>
+          </div>
+          <div className="flex items-center justify-between mr-6 bg-gray-50 px-2 py-1 rounded-sm mt-1">
             <h4 className="mr-6">Row</h4>
 
             <FormGroup row>
               {selectValues.map((value) => (
-                <FormControlLabel control={<Checkbox />} />
+                <div className="mx-10">
+                    <Checkbox />
+                </div>
               ))}
             </FormGroup>
           </div>
-          <div className="flex">
+          <div className="flex items-center justify-between mr-6 bg-gray-50 px-2 py-1 rounded-sm mt-1">
             <h4 className="mr-6">Row</h4>
-
             <FormGroup row>
               {selectValues.map((value) => (
-                <FormControlLabel control={<Checkbox />} />
+                <div className="mx-10">
+                    <Checkbox />
+                </div>
               ))}
             </FormGroup>
           </div>
-          <div className="flex">
+          <div className="flex items-center justify-between mr-6 bg-gray-50 px-2 py-1 rounded-sm mt-1">
             <h4 className="mr-6">Row</h4>
 
             <FormGroup row>
               {selectValues.map((value) => (
-                <FormControlLabel control={<Checkbox />} />
+                <div className="mx-10">
+                    <Checkbox />
+                </div>
               ))}
             </FormGroup>
           </div>
