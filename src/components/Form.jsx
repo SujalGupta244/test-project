@@ -42,10 +42,11 @@ const theme = createTheme({
   },
 });
 
-const Form = () => {
-  const [selectValues, setSelectValues] = useState(["option1", "option2", "option3"]);
-  const [value, setValue] = useState("");
-  const [counts, setCount] = useState([1, 2, 3, 4, 5]);
+const Form = (props) => {
+    const {setSubmit} = props
+    const [selectValues, setSelectValues] = useState(["option1", "option2", "option3"]);
+    const [value, setValue] = useState("");
+    const [counts, setCount] = useState([1, 2, 3, 4, 5]);
   
   
   const handleSubmit = (e) =>{
@@ -266,6 +267,7 @@ const Form = () => {
             color={"violet"}
             className="w-32"
             type="submit"
+            onClick={() => setSubmit(true)}
           >
             Submit
           </Button>
