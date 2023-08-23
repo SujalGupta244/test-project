@@ -5,7 +5,7 @@ const Header = () => {
   return (
     <CusBox >
         <div className="bg-[#673AB7] w-full h-2.5 absolute top-0 left-0"></div>
-        <h1 className='text-4xl mb-3'>Assignment Task</h1>
+        <h1 className='text-3xl mb-3'>Assignment Task</h1>
         <hr  className='my-2 w-full'/>
         <h3 className='flex items-center justify-between mb-3'>
           <span>

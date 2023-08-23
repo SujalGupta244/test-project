@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import CusBox from "./CusBox";
 import {
   FormLabel,
@@ -32,23 +32,37 @@ const theme = createTheme({
       main: alpha("#673AB7", 1),
       contrastText: getContrastRatio("#673AB7", "#fff") > 4.5 ? "#fff" : "#111",
     },
+    primary:{
+        main: alpha("#673AB7", 1),
+        contrastText: getContrastRatio("#673AB7", "#fff") > 4.5 ? "#fff" : "#111",
+    },
+    info : {
+        main: alpha("#000", 1),
+    }
   },
 });
 
 const Form = () => {
-  const selectValues = ["option1", "option2", "option3"];
-  const counts = [1, 2, 3, 4, 5];
+  const [selectValues, setSelectValues] = useState(["option1", "option2", "option3"]);
+  const [value, setValue] = useState("");
+  const [counts, setCount] = useState([1, 2, 3, 4, 5]);
+  const handleSubmit = () =>{
+    console.log("Submitted")
+  }
+
+  const handleChange = (e) =>{
+    setValue(e.target.value)
+  }
   return (
     <ThemeProvider theme={theme}>
-      <FormControl className="">
+      <FormControl onSubmit={handleSubmit}>
         <CusBox>
-          <FormLabel className="flex text-black" color={"info"}>
-            MCQ <PiAsteriskSimpleBold className="text-xs text-red-600" />
+          <FormLabel className="flex text-black mb-3" color={"info"}>
+            MCQ <PiAsteriskSimpleBold className="text-[0.5rem] text-red-600" />
           </FormLabel>
           <RadioGroup
-          // aria-labelledby="demo-radio-buttons-group-label"
-          // defaultValue="female"
-          // name="radio-buttons-group"
+          defaultValue="option1"
+          name="radio-buttons-group"
           >
             {selectValues.map((value) => (
               <FormControlLabel
@@ -59,9 +73,10 @@ const Form = () => {
             ))}
           </RadioGroup>
         </CusBox>
+
         <CusBox>
-          <FormLabel className="flex text-black" color={"info"}>
-            Checkbox <PiAsteriskSimpleBold className="text-xs text-red-600" />
+          <FormLabel className="flex text-black mb-3" color={"info"}>
+            Checkbox <PiAsteriskSimpleBold className="text-[0.5rem] text-red-600" />
           </FormLabel>
           <FormGroup>
             {selectValues.map((value) => (
@@ -69,28 +84,30 @@ const Form = () => {
             ))}
           </FormGroup>
         </CusBox>
+
         <CusBox>
-          <FormLabel className="flex text-black" color={"info"}>
-            Short Answer{" "}
-            <PiAsteriskSimpleBold className="text-xs text-red-600" />
+          <FormLabel className="flex text-black mb-3" color={"info"}>
+            Short Answer
+            <PiAsteriskSimpleBold className="text-[0.5rem] text-red-600" />
           </FormLabel>
-          {/* <TextField id="standard-basic" label="Standard" variant="standard" /> */}
-          <Input defaultValue="Hello world" />
+          <Input placeholder="Your answer" />
         </CusBox>
+
         <CusBox>
-          <FormLabel className="flex text-black" color={"info"}>
-            ParaGraph <PiAsteriskSimpleBold className="text-xs text-red-600" />
+          <FormLabel className="flex text-black mb-3" color={"info"}>
+            ParaGraph <PiAsteriskSimpleBold className="text-[0.5rem] text-red-600" />
           </FormLabel>
-          {/* <TextField id="standard-basic" label="Standard" variant="standard" /> */}
-          <Input defaultValue="Hello world" />
+          <Input placeholder="Your answer" />
         </CusBox>
+
         <CusBox>
-          <FormLabel className="flex text-black" color={"info"}>
-            Drop down <PiAsteriskSimpleBold className="text-xs text-red-600" />
+          <FormLabel className="flex text-black mb-3" color={"info"}>
+            Drop down <PiAsteriskSimpleBold className="text-[0.5rem] text-red-600" />
           </FormLabel>
           <Select
-            // value={age}
-            // onChange={handleChange}
+            className="w-36"
+            value={value}
+            onChange={handleChange}
             displayEmpty
             inputProps={{ "aria-label": "Without label" }}
           >
@@ -99,33 +116,35 @@ const Form = () => {
             ))}
           </Select>
         </CusBox>
+
         <CusBox>
-          <FormLabel className="flex text-black" color={"info"}>
-            File Upload{" "}
-            <PiAsteriskSimpleBold className="text-xs text-red-600" />
+          <FormLabel className="flex text-black mb-3" color={"info"}>
+            File Upload
+            <PiAsteriskSimpleBold className="text-[0.5rem] text-red-600" />
           </FormLabel>
           <Button
             variant="outlined"
             component="label"
-            className="w-36 border flex items-center justify-between"
+            className="w-28 flex border items-center justify-between"
           >
-            <BsUpload className="h-4 w-4" />
+            <BsUpload className="h-3 w-3" />
+            &nbsp;
             Add file
             <input type="file" hidden />
           </Button>
         </CusBox>
+
         <CusBox>
-          <FormLabel className="flex text-black" color={"info"}>
-            Linear Scale{" "}
-            <PiAsteriskSimpleBold className="text-xs text-red-600" />
+          <FormLabel className="flex text-black mb-3" color={"info"}>
+            Linear Scale
+            <PiAsteriskSimpleBold className="text-[0.5rem] text-red-600" />
           </FormLabel>
-          <div className="lg:flex items-center justify-center">
+          <div className="lg:flex items-end justify-center py-6">
             <h4 className="mr-6">Worst</h4>
             <RadioGroup
               row
-              // aria-labelledby="demo-radio-buttons-group-label"
-              // defaultValue="female"
-              // name="radio-buttons-group"
+              defaultValue="1"
+              name="radio-buttons-group"
             >
               {counts.map((value) => (
                 <FormControlLabel
@@ -139,95 +158,94 @@ const Form = () => {
             <h4 className="ml-6">Best</h4>
           </div>
         </CusBox>
+
         <CusBox>
-          <FormLabel className="flex text-black" color={"info"}>
+          <FormLabel className="flex text-black mb-3" color={"info"}>
             Multi choice Grid
-            <PiAsteriskSimpleBold className="text-xs text-red-600" />
+            <PiAsteriskSimpleBold className="text-[0.5rem] text-red-600" />
           </FormLabel>
           <div className="flex items-center justify-end mr-10 mb-4">
-            <h3 className="mx-6">Column1</h3>
-            <h3 className="mx-6">Column2</h3>
-            <h3 className="mx-6">Column3</h3>
+            <h4 className="mx-6">Column 1</h4>
+            <h4 className="mx-6">Column 2</h4>
+            <h4 className="mx-6">Column 3</h4>
           </div>
-          <div className="flex items-center justify-between mr-6 bg-gray-50 px-2 py-1 rounded-sm">
-            <h4 className="">Row 1</h4>
+          <div className="flex items-center justify-between mr-6 bg-gray-50 p-2 rounded-sm">
+            <h4>Row 1</h4>
             <RadioGroup
               row
+              onChange={handleChange}
             >
               {selectValues.map((value) => (
                 <div className="mx-10">
-                    <Radio />
+                    <Radio value={value}/>
                 </div>
               ))}
             </RadioGroup>
           </div>
           <div className="flex items-center justify-between mr-6 bg-gray-50 px-2 py-1 rounded-sm mt-1">
-            <h4 className="">Row 2</h4>
+            <h4>Row 2</h4>
             <RadioGroup
               row
-              
             >
               {selectValues.map((value) => (
                 <div className="mx-10">
-                    <Radio />
+                    <Radio value={value} />
                 </div>
               ))}
             </RadioGroup>
           </div>
           <div className="flex items-center justify-between mr-6 bg-gray-50 px-2 py-1 rounded-sm mt-1">
-            <h4 className="">Row 2</h4>
+            <h4>Row 3</h4>
             <RadioGroup
               row
-              aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue="female"
+              defaultValue="option1"
               name="radio-buttons-group"
             >
               {selectValues.map((value) => (
                 <div className="mx-10">
-                    <Radio />
+                    <Radio value={value}/>
                 </div>
               ))}
             </RadioGroup>
           </div>
         </CusBox>
+
         <CusBox>
-          <FormLabel className="flex text-black" color={"info"}>
+          <FormLabel className="flex text-black mb-3" color={"info"}>
             Tick box Grid
-            <PiAsteriskSimpleBold className="text-xs text-red-600" />
+            <PiAsteriskSimpleBold className="text-[0.5rem] text-red-600" />
           </FormLabel>
           <div className="flex items-center justify-end mr-10 mb-4">
-            <h3 className="mx-6">Column1</h3>
-            <h3 className="mx-6">Column2</h3>
-            <h3 className="mx-6">Column3</h3>
+            <h4 className="mx-6">Column 1</h4>
+            <h4 className="mx-6">Column 2</h4>
+            <h4 className="mx-6">Column 3</h4>
           </div>
-          <div className="flex items-center justify-between mr-6 bg-gray-50 px-2 py-1 rounded-sm mt-1">
-            <h4 className="mr-6">Row</h4>
-
-            <FormGroup row>
+          <div className="flex items-center justify-between mr-6 bg-gray-50 p-2 rounded-sm mt-1">
+            <h4>Row</h4>
+            <FormGroup row onChange={handleChange}>
               {selectValues.map((value) => (
                 <div className="mx-10">
-                    <Checkbox />
+                    <Checkbox value={value}/>
                 </div>
               ))}
             </FormGroup>
           </div>
-          <div className="flex items-center justify-between mr-6 bg-gray-50 px-2 py-1 rounded-sm mt-1">
-            <h4 className="mr-6">Row</h4>
-            <FormGroup row>
+          <div className="flex items-center justify-between mr-6 bg-gray-50 p-2 rounded-sm mt-1">
+            <h4>Row</h4>
+            <FormGroup row onChange={handleChange}>
               {selectValues.map((value) => (
                 <div className="mx-10">
-                    <Checkbox />
+                    <Checkbox value={value}/>
                 </div>
               ))}
             </FormGroup>
           </div>
-          <div className="flex items-center justify-between mr-6 bg-gray-50 px-2 py-1 rounded-sm mt-1">
-            <h4 className="mr-6">Row</h4>
-
-            <FormGroup row>
+          <div className="flex items-center justify-between mr-6 bg-gray-50 p-2 rounded-sm mt-1">
+            <h4>Row</h4>
+            <FormGroup row onChange={handleChange}>
               {selectValues.map((value) => (
                 <div className="mx-10">
-                    <Checkbox />
+                    <Checkbox value={value}/>
                 </div>
               ))}
             </FormGroup>
