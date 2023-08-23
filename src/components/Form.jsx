@@ -46,16 +46,22 @@ const Form = () => {
   const [selectValues, setSelectValues] = useState(["option1", "option2", "option3"]);
   const [value, setValue] = useState("");
   const [counts, setCount] = useState([1, 2, 3, 4, 5]);
-  const handleSubmit = () =>{
-    console.log("Submitted")
+  
+  
+  const handleSubmit = (e) =>{
+    e.preventDefault()
+    console.log(value)
+    setValue("")
   }
 
   const handleChange = (e) =>{
     setValue(e.target.value)
   }
+  
   return (
     <ThemeProvider theme={theme}>
-      <FormControl onSubmit={handleSubmit}>
+    <form action="" onSubmit={handleSubmit}>
+      <FormControl >
         <CusBox>
           <FormLabel className="flex text-black mb-3" color={"info"}>
             MCQ <PiAsteriskSimpleBold className="text-[0.5rem] text-red-600" />
@@ -66,6 +72,7 @@ const Form = () => {
           >
             {selectValues.map((value) => (
               <FormControlLabel
+                key={value}
                 value={value}
                 control={<Radio />}
                 label={value}
@@ -80,7 +87,7 @@ const Form = () => {
           </FormLabel>
           <FormGroup>
             {selectValues.map((value) => (
-              <FormControlLabel control={<Checkbox />} label={value} />
+              <FormControlLabel key={value} control={<Checkbox />} label={value} />
             ))}
           </FormGroup>
         </CusBox>
@@ -112,7 +119,7 @@ const Form = () => {
             inputProps={{ "aria-label": "Without label" }}
           >
             {selectValues.map((value) => (
-              <MenuItem value={value}>{value}</MenuItem>
+              <MenuItem key={value} value={value}>{value}</MenuItem>
             ))}
           </Select>
         </CusBox>
@@ -148,6 +155,7 @@ const Form = () => {
             >
               {counts.map((value) => (
                 <FormControlLabel
+                    key={value}
                   value={value}
                   control={<Radio />}
                   label={value}
@@ -176,7 +184,7 @@ const Form = () => {
               onChange={handleChange}
             >
               {selectValues.map((value) => (
-                <div className="mx-10">
+                <div className="mx-10" key={value}>
                     <Radio value={value}/>
                 </div>
               ))}
@@ -188,7 +196,7 @@ const Form = () => {
               row
             >
               {selectValues.map((value) => (
-                <div className="mx-10">
+                <div className="mx-10" key={value}>
                     <Radio value={value} />
                 </div>
               ))}
@@ -202,7 +210,7 @@ const Form = () => {
               name="radio-buttons-group"
             >
               {selectValues.map((value) => (
-                <div className="mx-10">
+                <div className="mx-10" key={value}>
                     <Radio value={value}/>
                 </div>
               ))}
@@ -224,7 +232,7 @@ const Form = () => {
             <h4>Row</h4>
             <FormGroup row onChange={handleChange}>
               {selectValues.map((value) => (
-                <div className="mx-10">
+                <div className="mx-10" key={value}>
                     <Checkbox value={value}/>
                 </div>
               ))}
@@ -234,7 +242,7 @@ const Form = () => {
             <h4>Row</h4>
             <FormGroup row onChange={handleChange}>
               {selectValues.map((value) => (
-                <div className="mx-10">
+                <div className="mx-10" key={value}>
                     <Checkbox value={value}/>
                 </div>
               ))}
@@ -244,7 +252,7 @@ const Form = () => {
             <h4>Row</h4>
             <FormGroup row onChange={handleChange}>
               {selectValues.map((value) => (
-                <div className="mx-10">
+                <div className="mx-10" key={value}>
                     <Checkbox value={value}/>
                 </div>
               ))}
@@ -257,6 +265,7 @@ const Form = () => {
             size="medium"
             color={"violet"}
             className="w-32"
+            type="submit"
           >
             Submit
           </Button>
@@ -302,6 +311,7 @@ const Form = () => {
           </div>
         </div>
       </FormControl>
+      </form>
     </ThemeProvider>
   );
 };
